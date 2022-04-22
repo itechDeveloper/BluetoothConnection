@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".MainActivity"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:background="@color/black">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="100px"
+        android:padding="15px"
+        android:layout_marginTop="10px">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15px"
+            android:text="BLUETOOTH"
+            android:textSize="24dp"
+            android:textStyle="bold"
+            android:textColor="@color/white"/>
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/switch_bluetooth"
+            android:layout_width="match_parent"
+            android:layout_height="75px"
+            android:gravity="center"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:thumb="@drawable/thumb"
+            app:track="@drawable/track" />
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/btn_refresh"
+        android:layout_width="match_parent"
+        android:layout_height="60px"
+        android:text="REFRESH"
+        android:textSize="20px"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:padding="10px"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ListView
+            android:id="@+id/list_devices"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="10px"
+            android:layout_margin="5px"/>
+
+        <TextView
+            android:id="@+id/text_connected_device"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textAlignment="center"
+            android:gravity="center"
+            android:textSize="20px"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:padding="10px"/>
+
+    </RelativeLayout>
+
+
+</LinearLayout>

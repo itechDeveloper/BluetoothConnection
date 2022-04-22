@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/seven/AndroidStudioProjects/BluetoothConnection/app/src/main/res/drawable-v24/avd_done.xml" value="0.174" />
+        <entry key="..\:/Users/seven/AndroidStudioProjects/BluetoothConnection/app/src/main/res/drawable/button_color.xml" value="0.2265" />
+        <entry key="..\:/Users/seven/AndroidStudioProjects/BluetoothConnection/app/src/main/res/drawable/thumb.xml" value="0.2255" />
+        <entry key="..\:/Users/seven/AndroidStudioProjects/BluetoothConnection/app/src/main/res/drawable/track.xml" value="0.2255" />
+        <entry key="..\:/Users/seven/AndroidStudioProjects/BluetoothConnection/app/src/main/res/layout/activity_main.xml" value="0.536" />
+        <entry key="..\:/Users/seven/AndroidStudioProjects/BluetoothConnection/app/src/main/res/layout/device_adapter_view.xml" value="0.46929316338354576" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>
