@@ -17,6 +17,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -45,7 +46,9 @@ public class MainActivity extends AppCompatActivity {
     public String address;
     public String threadName;
 
+    Button btn_disconnect;
     boolean connected;
+    BluetoothDevice pairedDevice;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,6 +87,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        btn_disconnect.setOnClickListener(view -> unpairDevice(pairedDevice));
+
         IntentFilter filter = new IntentFilter(BluetoothDevice.ACTION_BOND_STATE_CHANGED);
         registerReceiver(myBroadcastReceiver, filter);
         onClickItem();
@@ -105,6 +110,7 @@ public class MainActivity extends AppCompatActivity {
         btn_refresh.setBackgroundResource(R.color.grey);
         text_connected_device = findViewById(R.id.text_connected_device);
         text_connected_device.setText("");
+        btn_disconnect = findViewById(R.id.btn_disconnect);
     }
 
     @SuppressLint("MissingPermission")
@@ -251,6 +257,16 @@ public class MainActivity extends AppCompatActivity {
         list_devices.setAdapter(deviceListAdapter);
     }
 
+
+    private void unpairDevice(BluetoothDevice device) {
+        try {
+            Method m = device.getClass().getMethod("removeBond", (Class[]) null);
+            m.invoke(device, (Object[]) null);
+        } catch (Exception e) {
+            Log.e(TAG, e.getMessage());
+        }
+    }
+
     // CHECK CONNECTION
     public void checkConnected()
     {
@@ -259,6 +275,8 @@ public class MainActivity extends AppCompatActivity {
             if (myBluetoothAdapter.isEnabled()){
                 BluetoothAdapter.getDefaultAdapter().getProfileProxy(this, serviceListener, BluetoothProfile.HEADSET);
             }else{
+                btn_disconnect.setVisibility(View.INVISIBLE);
+                btn_disconnect.setEnabled(false);
                 name = "";
                 text_connected_device.setText("");
             }
@@ -266,7 +284,6 @@ public class MainActivity extends AppCompatActivity {
             logInfo("Checking");
         }, 2000);
     }
-
 
     private final BluetoothProfile.ServiceListener serviceListener = new BluetoothProfile.ServiceListener()
     {
@@ -279,6 +296,7 @@ public class MainActivity extends AppCompatActivity {
         {
             for (BluetoothDevice device : proxy.getConnectedDevices()) {
 
+                pairedDevice = device;
                 name = device.getName();
                 address = device.getAddress();
                 threadName = Thread.currentThread().getName();
@@ -294,6 +312,8 @@ public class MainActivity extends AppCompatActivity {
                         btn_refresh.setEnabled(false);
                         btn_refresh.setBackgroundResource(R.color.grey);
                         disableDiscoverability();
+                        btn_disconnect.setVisibility(View.VISIBLE);
+                        btn_disconnect.setEnabled(true);
                     }
                 }
             }
@@ -305,6 +325,8 @@ public class MainActivity extends AppCompatActivity {
                 btn_refresh.setBackgroundResource(R.color.green);
                 name = "";
                 text_connected_device.setText("");
+                btn_disconnect.setVisibility(View.INVISIBLE);
+                btn_disconnect.setEnabled(false);
             }
 
             BluetoothAdapter.getDefaultAdapter().closeProfileProxy(profile, proxy);

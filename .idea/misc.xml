@@ -5,6 +5,8 @@
       <map>
         <entry key="..\:/Users/seven/AndroidStudioProjects/BluetoothConnection/app/src/main/res/drawable-v24/avd_done.xml" value="0.174" />
         <entry key="..\:/Users/seven/AndroidStudioProjects/BluetoothConnection/app/src/main/res/drawable/button_color.xml" value="0.2265" />
+        <entry key="..\:/Users/seven/AndroidStudioProjects/BluetoothConnection/app/src/main/res/drawable/disconnect_button.xml" value="0.233" />
+        <entry key="..\:/Users/seven/AndroidStudioProjects/BluetoothConnection/app/src/main/res/drawable/ic_launcher_background.xml" value="0.233" />
         <entry key="..\:/Users/seven/AndroidStudioProjects/BluetoothConnection/app/src/main/res/drawable/thumb.xml" value="0.2255" />
         <entry key="..\:/Users/seven/AndroidStudioProjects/BluetoothConnection/app/src/main/res/drawable/track.xml" value="0.2255" />
         <entry key="..\:/Users/seven/AndroidStudioProjects/BluetoothConnection/app/src/main/res/layout/activity_main.xml" value="0.536" />
