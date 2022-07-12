@@ -8,7 +8,12 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothManager;
 import android.bluetooth.BluetoothProfile;
+import android.bluetooth.le.BluetoothLeScanner;
+import android.bluetooth.le.ScanCallback;
+import android.bluetooth.le.ScanResult;
+import android.bluetooth.le.ScanSettings;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -102,7 +107,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initObjects() {
-        myBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+        BluetoothManager bluetoothManager = (BluetoothManager) getSystemService(Context.BLUETOOTH_SERVICE);
+        myBluetoothAdapter = bluetoothManager.getAdapter();
         devices = new ArrayList<>();
         list_devices = findViewById(R.id.list_devices);
         switchCompat = findViewById(R.id.switch_bluetooth);
@@ -177,7 +183,6 @@ public class MainActivity extends AppCompatActivity {
                 if (myBluetoothAdapter.isDiscovering()){
                     myBluetoothAdapter.cancelDiscovery();
                     logInfo("onDiscover-button: Canceling discovery.");
-
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                         checkPermissions();
                         myBluetoothAdapter.startDiscovery();
@@ -185,7 +190,6 @@ public class MainActivity extends AppCompatActivity {
                         registerReceiver(myBroadcastReceiver, discoverIntent);
                     }
                 }
-
                 if (!myBluetoothAdapter.isDiscovering()){
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                         checkPermissions();
@@ -194,11 +198,11 @@ public class MainActivity extends AppCompatActivity {
                         registerReceiver(myBroadcastReceiver, discoverFilter);
                     }
                 }
-
                 if (!switchCompat.isChecked()){
                     switchCompat.setChecked(true);
                 }
                 functDiscoverCalled = true;
+
             }else{
                 logInfo("Device is already connected!");
             }
@@ -256,7 +260,6 @@ public class MainActivity extends AppCompatActivity {
         deviceListAdapter = new DeviceListAdapter(getApplicationContext(), devices);
         list_devices.setAdapter(deviceListAdapter);
     }
-
 
     private void unpairDevice(BluetoothDevice device) {
         try {
